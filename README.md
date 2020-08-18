@@ -1,0 +1,2 @@
+# fastmark
+Fast Benchmark
