@@ -2,9 +2,10 @@ import os,sys,time,math,datetime,urllib.request
 from subprocess import Popen
 from subprocess import PIPE
 
-if sys.argv[1]=='--help':
-	print('It takes a fast benchmark. Use --disable-disk-mark to skip disk cheks')
-	exit()
+if len(sys.argv)>1:
+	if sys.argv[1]=='--help':
+		print('It takes a fast benchmark. Use --disable-disk-mark to skip disk cheks')
+		exit()
 	
 os.system('clear')
 SYSBENCH="sysbench cpu --time=1 --threads=THREADS --cpu-max-prime=100000 run"
@@ -140,10 +141,11 @@ print('GPU Score:',gt,'\n')# ,'  passmark eq:',round(gt*kpmgt),'  userbenchmark 
 
 listdisks()
 
-if sys.argv[1]=='--disable-disk-mark':
-	print('Skipping disk checks...')
-else:
-	testdisks()
+if len(sys.argv)>1:
+	if sys.argv[1]=='--disable-disk-mark':
+		print('Skipping disk checks...')
+	else:
+		testdisks()
 
 print('\nEnd Time:',time.ctime())
 t2=time.time()
